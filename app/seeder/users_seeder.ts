@@ -10,6 +10,18 @@ export const users = [
         role: 'developer',
         created_at: '',
         updated_at: '',
+    },
+    {
+        nama_lengkap: 'Aldebaran Alfahri',
+        username: 'aldebaran',
+        email: 'aldebaran@alfahri.com',
+        email_verified: null,
+        password: 'aldebaran',
+        tempat_lahir: 'Pondok Pelita',
+        tanggal_lahir: '',
+        role: 'admin',
+        created_at: '',
+        updated_at: '',
     }
 ]
 

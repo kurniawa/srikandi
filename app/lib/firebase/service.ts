@@ -8,14 +8,14 @@ import {
     query,
     where,
   } from 'firebase/firestore';
-  import bcrypt from 'bcrypt';
+  // import bcrypt from 'bcrypt';
   import { now } from 'next-auth/client/_utils';
-import { app } from '@/firebase.config';
+import { app, db } from '@/firebase.config';
   
-  const firestore = getFirestore(app);
+  // const firestore = getFirestore(app);
   
-  export const retrieveData = async (collectionName: string) => {
-    const snapshot = await getDocs(collection(firestore, collectionName));
+  export const retrieveAllDataInCollection = async (collectionName: string) => {
+    const snapshot = await getDocs(collection(db, collectionName));
     const data = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -26,7 +26,7 @@ import { app } from '@/firebase.config';
   };
   
   export const retrieveDataById = async (collectionName: string, id: string) => {
-    const snapshot = await getDoc(doc(firestore, collectionName, id));
+    const snapshot = await getDoc(doc(db, collectionName, id));
     const data = snapshot.data();
   
     return data;
@@ -37,11 +37,11 @@ import { app } from '@/firebase.config';
     password: string;
     fullname: string;
     role?: string;
-    createdAt?: number;
-    updatedAt?: number;
+    created_at?: number;
+    updated_at?: number;
   }) => {
     const q = query(
-      collection(firestore, 'users'),
+      collection(db, 'users'),
       where('username', '==', data.username)
     );
     const snapshot = await getDocs(q);
@@ -58,11 +58,11 @@ import { app } from '@/firebase.config';
     }
   
     data.password = await bcrypt.hash(data.password, 10);
-    data.createdAt = Date.now();
-    data.updatedAt = Date.now();
+    data.created_at = Date.now();
+    data.updated_at = Date.now();
   
     try {
-      await addDoc(collection(firestore, 'users'), data);
+      await addDoc(collection(db, 'users'), data);
       return { status: true, message: 'Register success!', statusCode: 200 };
     } catch (error) {
       return { status: false, message: error, statusCode: 400 };
@@ -72,7 +72,7 @@ import { app } from '@/firebase.config';
   export const login = async (data: any) => {
     // console.log(data);
     const q = query(
-      collection(firestore, 'users'),
+      collection(db, 'users'),
       where('username', '==', data.username)
     );
     const snapshot = await getDocs(q);
