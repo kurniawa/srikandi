@@ -1,6 +1,6 @@
 export const users = [
     {
-        nama_lengkap: 'Adi Kurniawan',
+        fullname: 'Adi Kurniawan',
         username: 'cibinongguy',
         email: 'kurniawan_01@ymail.com',
         email_verified: null,
@@ -12,7 +12,7 @@ export const users = [
         updated_at: '',
     },
     {
-        nama_lengkap: 'Aldebaran Alfahri',
+        fullname: 'Aldebaran Alfahri',
         username: 'aldebaran',
         email: 'aldebaran@alfahri.com',
         email_verified: null,

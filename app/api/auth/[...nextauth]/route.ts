@@ -2,6 +2,7 @@ import NextAuth from 'next-auth/next';
 // import { authOptions } from '../../lib/authOptions';
 import { login } from '@/app/lib/firebase/service';
 import { compare } from 'bcrypt';
+import bcryptjs from "bcryptjs";
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
@@ -36,7 +37,9 @@ const authOptions: NextAuthOptions = {
   
           if (user) {
             // Any object returned will be saved in `user` property of the JWT
-            const passwordConfirm = await compare(password, user.password);
+            // const passwordConfirm = await compare(password, user.password);
+            const passwordConfirm = bcryptjs.compareSync(password, user.password);
+
             if (passwordConfirm) {
               return user;
             } else {
