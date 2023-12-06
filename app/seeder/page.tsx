@@ -56,6 +56,7 @@ const SeederPage = () => {
                 jenis_perhiasan: product.jenis_perhiasan,
                 range_usia: product.range_usia,
                 warna_emas: product.warna_emas,
+                mata: product.mata,
                 plat: product.plat,
                 cap: product.cap,
                 ukuran: product.ukuran,
@@ -63,10 +64,11 @@ const SeederPage = () => {
                 merk: product.merk,
                 edisi: product.edisi,
                 kadar: product.kadar,
-                gol_kadar: product.gol_kadar,
                 berat: product.berat,
                 kondisi: product.kondisi,
                 nama: product.nama,
+                deskripsi: product.deskripsi,
+                status: product.status,
                 stok: product.stok,
                 barcode: product.barcode,
                 keterangan: product.keterangan,
@@ -81,10 +83,10 @@ const SeederPage = () => {
             <h1 className="text-xl">Seeder Page</h1>
             <div className="flex gap-3 mt-5">
                 <button className="btn btn-error" onClick={handleUserSeeding} disabled={isLoading}>
-                    delete all data {isLoading && <span className="loading loading-infinity"></span>}
+                    users_seeder {isLoading && <span className="loading loading-infinity"></span>}
                 </button>
-                <button className="btn btn-primary" onClick={handleUserSeeding} disabled={isLoading}>
-                    run seeding {isLoading && <span className="loading loading-infinity"></span>}
+                <button className="btn btn-primary" onClick={handleProductsSeeding} disabled={isLoading}>
+                    products_seeder {isLoading && <span className="loading loading-infinity"></span>}
                 </button>
             </div>
             <div>{feedback && <span>{feedback}</span>}</div>
