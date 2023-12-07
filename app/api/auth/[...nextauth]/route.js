@@ -40,7 +40,6 @@ const authOptions = {
         const user = await login({ username });
         // console.log(user);
 
-        return null;
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
           // const passwordConfirm = await compare(password, user.password);
